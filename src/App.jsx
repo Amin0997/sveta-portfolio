@@ -1,7 +1,13 @@
 import './App.css'
 import { useState } from 'react'
+import { Link, Routes, Route } from 'react-router-dom'
+import Project from './pages/Project.jsx'
+import TheFlex from './pages/works/TheFlex/TheFlex.jsx'
+import LittleMind from './pages/works/LittleMind/LittleMind.jsx'
+import Meraki from './pages/works/Meraki/Meraki.jsx'
+import Karachaevsk from './pages/works/Karachaevsk/Karachaevsk.jsx'
 
-function App() {
+function Home() {
   const [hoveredItem, setHoveredItem] = useState(null)
   const [hoveredElement, setHoveredElement] = useState(null)
 
@@ -16,26 +22,30 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen w-full px-[318px] flex-col
+    <div className="flex h-screen w-full flex-col px-[6%]
       font-montserrat font-semibold">
       <header className='w-full'>
         <nav className="flex justify-between items-center mt-8 text-[32px]">
-          <a href="##">
+          <Link to="/">
             <h1 className=''>Света Магаяева</h1>
-          </a>
-          <ul className='flex gap-x-[58px]'>
-            <li><a href="#">Работы</a></li>
+          </Link>
+          <ul className='flex gap-x-[58px] font-normal text-[24px]'>
+            <li><a href="#">Мои работы</a></li>
             <li><a href="#">Контакты</a></li>
           </ul>
         </nav>
 
-        <h2 className='w-7xl text-[64px] my-60 whitespace-pre-line'>
-          {`Я графический дизайнер, специализирующийся 
-          на фирменном стиле, упаковке 
-          и дизайне социальных сетей.`}
+        <h2 className='w-7xl text-[50px] mt-[430px] mb-[350px] whitespace-pre-line'>
+          {`Я графический дизайнер, 
+          специализирующийся на фирменном стиле, 
+          упаковке и дизайне социальных сетей.`}
         </h2>
-
-        <div className="w-7xl h-96 bg-red-100 mb-52"></div>
+        
+        <h2 className='text-[90px] mb-25 text-[#D1D1D1] leading-14 font-semibold'>
+          ALL PROJECTS
+          <span className='block text-[26px] font-bold'>(THAT I LIKE)</span>
+        </h2>
+        
       </header>
 
       <main className="relative">
@@ -47,28 +57,28 @@ function App() {
             onMouseEnter={(e) => handleMouseEnter('The flex', e)}
             onMouseLeave={handleMouseLeave}
           >
-            The flex
+            <Link to="/works/the-flex">The flex</Link>
           </li>
           <li 
             className='hover:text-[#ED582E] relative'
             onMouseEnter={(e) => handleMouseEnter('little mind', e)}
             onMouseLeave={handleMouseLeave}
           >
-            little mind
+            <Link to="/works/little-mind">little mind</Link>
           </li>
           <li 
             className='hover:text-[#7D002D] relative'
             onMouseEnter={(e) => handleMouseEnter('Meraki', e)}
             onMouseLeave={handleMouseLeave}
           >
-            Meraki
+            <Link to="/works/meraki">Meraki</Link>
           </li>
           <li 
             className='hover:text-[#76992E] relative'
             onMouseEnter={(e) => handleMouseEnter('Karachaevsk', e)}
             onMouseLeave={handleMouseLeave}
           >
-            Karachaevsk
+            <Link to="/works/karachaevsk">Karachaevsk</Link>
           </li>
           {/* Всплывающий div */}
           {hoveredItem && hoveredElement && (
@@ -87,10 +97,8 @@ function App() {
         </ul>
       </main>
 
-      <footer className='mt-52 flex-row flex items-center text-[32px] pb-[150px]'>
-        <p>links</p>
-        <div className='w-20 h-[3px] bg-black rounded-full mx-8'/>
-        <ul className='flex flex-row items-center justify-between w-full'>
+      <footer className='mt-52 flex-row flex items-center text-[32px] pb-[100px]'>
+        <ul className='flex flex-row items-center justify-between w-full font-normal'>
           <li>
             <a href="##">behance</a>
           </li>
@@ -110,4 +118,16 @@ function App() {
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/project/:slug" element={<Project />} />
+      <Route path="/works/the-flex" element={<TheFlex />} />
+      <Route path="/works/little-mind" element={<LittleMind />} />
+      <Route path="/works/meraki" element={<Meraki />} />
+      <Route path="/works/karachaevsk" element={<Karachaevsk />} />
+      <Route path="*" element={<Home />} />
+    </Routes>
+  )
+}
