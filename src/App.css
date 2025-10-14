@@ -1,0 +1,24 @@
+/* App.css */
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+  
+  .group:hover .group-hover\:visible {
+    visibility: visible;
+  }
+  
+  .group:hover .group-hover\:scale-100 {
+    transform: scale(1);
+  }
+  
+  /* Плавные переходы */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+/* Для более плавной анимации */
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
