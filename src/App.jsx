@@ -3,35 +3,30 @@ import { Link, Routes, Route } from 'react-router-dom'
 import Project from './pages/Project.jsx'
 import ScrollToTop from './helpers/ScrollTotTop.jsx'
 
-import TheFlexPreview from './pages/works/TheFlex/preview.jpg';
-import LittleMindsPreview from './pages/works/LittleMinds/preview.jpg';
-import MerakiPreview from './pages/works/Meraki/preview.jpg';
-import KarachaevskPreview from './pages/works/Karachaevsk/preview.jpg';
-
-
 function Home() {
-const projectData = {
-  'The flex': {
-    preview: TheFlexPreview,
-    link: '/works/the-flex',
-    color: '#0F7FA6'
-  },
-  'little minds': {
-    preview: LittleMindsPreview,
-    link: '/works/little-minds',
-    color: '#ED582E'
-  },
-  'Meraki': {
-    preview: MerakiPreview,
-    link: '/works/meraki',
-    color: '#7D002D'
-  },
-  'Karachaevsk': {
-    preview: KarachaevskPreview,
-    link: '/works/karachaevsk',
-    color: '#76992E'
+  const projectData = {
+    'The flex': {
+      preview: '/src/pages/works/TheFlex/preview.jpg',
+      link: '/works/the-flex',
+      color: '#0F7FA6'
+    },
+    'little minds': {
+      preview: '/src/pages/works/LittleMinds/preview.jpg',
+      link: '/works/little-minds',
+      color: '#ED582E'
+    },
+    'Meraki': {
+      preview: '/src/pages/works/Meraki/preview.jpg',
+      link: '/works/meraki',
+      color: '#7D002D'
+    },
+    'Karachaevsk': {
+      preview: '/src/pages/works/Karachaevsk/preview.jpg',
+      link: '/works/karachaevsk',
+      color: '#76992E'
+    }
   }
-}
+
 
   return (
     <div className="flex min-h-screen w-full flex-col px-[6%] overflow-x-hidden font-montserrat font-semibold">
@@ -100,20 +95,13 @@ const projectData = {
           <li className='hover:scale-105 ease-in-out duration-200 px-4 py-2'>
             <a href="##" className=' text-[#0088CC]'>telegram</a>
           </li>
-          <li className="hover:scale-105 ease-in-out duration-200 px-4 py-2">
+          <li className='hover:scale-105 ease-in-out duration-200 px-4 py-2'>
             <a
               href="##"
-              className="text-transparent inline-block"
-              style={{
-                background: "radial-gradient(circle at center, #F58529, #DD2A7B, #515BD4)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
+              className="bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4] bg-clip-text text-transparent">
               instagram
             </a>
           </li>
-
           <li className='hover:scale-105 ease-in-out duration-200 px-4 py-2'>
             <a href="##" className=' text-[#EA4335]'>e-mail</a>
           </li>
