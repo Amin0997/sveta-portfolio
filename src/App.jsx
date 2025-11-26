@@ -1,6 +1,7 @@
 import './App.css'
 import { Link, Routes, Route } from 'react-router-dom'
 import Project from './pages/Project.jsx'
+import ScrollToTop from './helpers/ScrollTotTop.jsx'
 
 function Home() {
   const projectData = {
@@ -25,6 +26,7 @@ function Home() {
       color: '#76992E'
     }
   }
+
 
   return (
     <div className="flex min-h-screen w-full flex-col px-[6%] overflow-x-hidden font-montserrat font-semibold">
@@ -60,7 +62,7 @@ function Home() {
               key={name}
               className={`relative group py-4 duration-0 hover:text-[${data.color}]`}
             >
-              <Link 
+              <Link
                 to={data.link}
                 className="block w-full transition-all duration-300 ease-in-out hover:scale-105 border-b-3 border-black"
               >
@@ -85,19 +87,30 @@ function Home() {
         </ul>
       </main>
 
-      <footer className='mt-52 flex-row flex items-center text-[32px] pb-[100px]'>
+      <footer className='mt-50 flex-row flex items-center text-[32px] pb-[100px]'>
         <ul className='flex flex-row items-center justify-between w-full font-normal'>
-          <li>
-            <a href="##">behance</a>
+          <li className='hover:scale-105 ease-in-out duration-200 px-4 py-2'>
+            <a href="##" className=' text-[#1769FF]'>behance</a>
           </li>
-          <li>
-            <a href="##">telegram</a>
+          <li className='hover:scale-105 ease-in-out duration-200 px-4 py-2'>
+            <a href="##" className=' text-[#0088CC]'>telegram</a>
           </li>
-          <li>
-            <a href="##">instagram</a>
+          <li className="hover:scale-105 ease-in-out duration-200 px-4 py-2">
+            <a
+              href="##"
+              className="text-transparent inline-block"
+              style={{
+                background: "radial-gradient(circle at center, #F58529, #DD2A7B, #515BD4)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+              }}
+            >
+              instagram
+            </a>
           </li>
-          <li>
-            <a href="##">e-mail</a>
+
+          <li className='hover:scale-105 ease-in-out duration-200 px-4 py-2'>
+            <a href="##" className=' text-[#EA4335]'>e-mail</a>
           </li>
         </ul>
       </footer>
@@ -108,10 +121,13 @@ function Home() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/works/:slug" element={<Project />} />
-      <Route path="*" element={<Home />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/works/:slug" element={<Project />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </>
   )
 }
