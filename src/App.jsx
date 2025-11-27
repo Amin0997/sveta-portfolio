@@ -3,25 +3,30 @@ import { Link, Routes, Route } from 'react-router-dom'
 import Project from './pages/Project.jsx'
 import ScrollToTop from './helpers/ScrollTotTop.jsx'
 
+import theFlexPreview from './pages/works/TheFlex/preview.jpg'
+import littleMindsPreview from './pages/works/LittleMinds/preview.jpg'
+import merakiPreview from './pages/works/Meraki/preview.jpg'
+import karachaevskPreview from './pages/works/Karachaevsk/preview.jpg'
+
 function Home() {
   const projectData = {
     'The flex': {
-      preview: '/src/pages/works/TheFlex/preview.jpg',
+      preview: theFlexPreview, // используем импортированное изображение
       link: '/works/the-flex',
       color: '#0F7FA6'
     },
     'little minds': {
-      preview: '/src/pages/works/LittleMinds/preview.jpg',
+      preview: littleMindsPreview,
       link: '/works/little-minds',
       color: '#ED582E'
     },
     'Meraki': {
-      preview: '/src/pages/works/Meraki/preview.jpg',
+      preview: merakiPreview,
       link: '/works/meraki',
       color: '#7D002D'
     },
     'Karachaevsk': {
-      preview: '/src/pages/works/Karachaevsk/preview.jpg',
+      preview: karachaevskPreview,
       link: '/works/karachaevsk',
       color: '#76992E'
     }
