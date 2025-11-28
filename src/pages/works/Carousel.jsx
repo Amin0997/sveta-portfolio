@@ -35,35 +35,35 @@ const Carousel = ({ images }) => {
   }, [emblaApi]);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl">
-      {/* Карусель */}
-      <div className="overflow-hidden " ref={emblaRef}>
-        <div className="flex">
-          {images.map((img, index) => (
-            <div className="flex-[0_0_100%]" key={index}>
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-auto object-cover shadow-xl transition-transform duration-500 hover:scale-[1.02]"
-              />
-            </div>
-          ))}
+      <div className="relative w-full overflow-hidden rounded-3xl">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            {images.map((img, index) => (
+              <div className="flex-[0_0_100%]" key={index}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full max-h-[80vh] object-cover shadow-xl transition-transform duration-500 hover:scale-[1.02]"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Стрелки */}
-      <button
-        onClick={scrollPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-900 p-4 rounded-full shadow-lg backdrop-blur-md transition-transform hover:scale-110 active:scale-95"
-      >
-        <ChevronLeft className="w-8 h-8" />
-      </button>
-      <button
-        onClick={scrollNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-900 p-4 rounded-full shadow-lg backdrop-blur-md transition-transform hover:scale-110 active:scale-95"
-      >
-        <ChevronRight className="w-8 h-8" />
-      </button>
+        {/* Стрелки */}
+        <button
+          onClick={scrollPrev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-900 p-4 rounded-full shadow-lg backdrop-blur-md transition-transform hover:scale-110 active:scale-95"
+        >
+          <ChevronLeft className="w-8 h-8" />
+        </button>
+        <button
+          onClick={scrollNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-900 p-4 rounded-full shadow-lg backdrop-blur-md transition-transform hover:scale-110 active:scale-95"
+        >
+          <ChevronRight className="w-8 h-8" />
+        </button>
+
 
       {/* Пагинация */}
       {/* <div className="flex justify-center gap-2 mt-4 py-1">
