@@ -136,7 +136,7 @@ function Home() {
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden font-montserrat font-semibold relative">
+    <div className="flex min-h-screen w-full flex-col items-center overflow-x-hidden font-Baskervville font-regular relative">
       <div className='w-[1440px] px-[6%]'>
       <header className='w-full pt-8 flex items-start justify-between'>
         <nav className="flex justify-between items-center text-[32px] leading-8 sticky top-0 bg-white z-10">
