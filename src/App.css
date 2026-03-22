@@ -22,3 +22,21 @@
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Тонкие точки списка */
+.thin-disc {
+  list-style: none;
+}
+.thin-disc li::before {
+  content: '•';
+  font-size: 0.5em;
+  margin-right: 0.5em;
+}
+
+/* Подчёркивание с отступом */
+.custom-underline {
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 0.5px solid currentColor;
+  padding-right: 20px;
+}
