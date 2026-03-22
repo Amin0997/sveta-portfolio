@@ -240,8 +240,8 @@ function Home() {
         {/* Модальное окно Contacts */}
         {(showContacts || isClosingContacts) && (
           <div
-            ref={contactsRef}
-            className={`absolute bottom-10 w-[1076px] h-[366px] bg-white z-40 border transition-all duration-300 ease-out ${
+            // ref={contactsRef}
+            className={`absolute bottom-20 w-[1076px] bg-white z-40 border transition-all duration-300 ease-out ${
               isClosingContacts
                 ? "translate-y-full"
                 : isAnimatingContacts
@@ -249,7 +249,7 @@ function Home() {
                   : "translate-y-full"
             }`}
             style={{
-              height: "360px",
+              height: "256px",
             }}
           >
             <div className="flex w-full h-full pt-16 px-[6%] relative">

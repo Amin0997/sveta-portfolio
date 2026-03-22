@@ -25,7 +25,7 @@ export default function Header({
 
         {/* RIGHT */}
         {mode === "home" ? (
-          <ul className="flex font-normal text-[32px] flex-col mr-[38%] leading-8 gap-y-4">
+          <ul className="flex mt-2 font-normal text-[32px] flex-col mr-[38%] leading-8 gap-y-4">
             {Object.entries(projectData).map(([name, data]) => (
               <li key={name}>
                 <Link
