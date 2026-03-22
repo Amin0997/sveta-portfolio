@@ -240,7 +240,7 @@ function Home() {
         {/* Модальное окно Contacts */}
         {(showContacts || isClosingContacts) && (
           <div
-            // ref={contactsRef}
+            ref={contactsRef}
             className={`absolute bottom-20 w-[1076px] bg-white z-40 border transition-all duration-300 ease-out ${
               isClosingContacts
                 ? "translate-y-full"
