@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveta Magayaeva · 間 ma · graphic designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --paper: #f6f3ee;
+        --ink: #1a1a1a;
+        --muted: #8e857b;
+        --sumi: #2b2622;
+        --vermilion: #8a3a2a;
+        --hair: rgba(26,26,26,.18);
+        --ease: cubic-bezier(.19,1,.22,1);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: var(--paper); color: var(--ink); }
+      body {
+        font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+        font-weight: 300;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        position: relative;
+      }
+      body::before {
+        content: ""; position: fixed; inset: 0;
+        background-image: radial-gradient(rgba(26,26,26,0.06) 1px, transparent 1px);
+        background-size: 4px 4px;
+        pointer-events: none; opacity: .35; z-index: 0;
+      }
+      ::selection { background: var(--vermilion); color: var(--paper); }
+
+      .wrap {
+        position: relative; z-index: 1;
+        max-width: 1280px; margin: 0 auto;
+        padding: 56px 80px 120px;
+      }
+
+      /* TOP */
+      .top {
+        display: flex; justify-content: space-between; align-items: baseline;
+        opacity: 0; animation: fade 1.2s var(--ease) .2s forwards;
+      }
+      .mark {
+        font-family: "Noto Serif JP", serif;
+        font-size: 22px; letter-spacing: 0.3em; color: var(--sumi);
+      }
+      .mark .sub { font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.4em; color: var(--muted); display: block; margin-top: 4px; text-transform: uppercase; }
+      .nav-jp {
+        display: flex; gap: 40px;
+        font-family: "Inter", sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+      }
+      .nav-jp a {
+        color: var(--sumi); text-decoration: none; position: relative; padding-bottom: 6px;
+        transition: color .5s var(--ease);
+      }
+      .nav-jp a::before {
+        content: attr(data-jp); position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+        font-family: "Noto Serif JP", serif; font-size: 11px; color: var(--vermilion);
+        opacity: 0; transition: opacity .5s var(--ease), bottom .5s var(--ease);
+      }
+      .nav-jp a:hover { color: var(--vermilion); }
+      .nav-jp a:hover::before { opacity: 1; bottom: -22px; }
+
+      /* HERO */
+      .hero {
+        margin-top: 160px;
+        display: grid; grid-template-columns: 1fr 2fr; gap: 80px;
+        position: relative;
+      }
+      .seal {
+        font-family: "Noto Serif JP", serif;
+        writing-mode: vertical-rl;
+        font-size: 84px; color: var(--vermilion); letter-spacing: 0.1em;
+        line-height: 1; align-self: start;
+        opacity: 0; transform: translateY(40px);
+        animation: rise 1.6s var(--ease) .5s forwards;
+      }
+      .seal .small {
+        display: block; font-size: 14px; color: var(--muted); letter-spacing: 0.4em;
+        margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--hair);
+      }
+      .hero-text { padding-top: 8px; }
+      .hero-text .kicker {
+        font-family: "Inter", sans-serif;
+        font-size: 12px; letter-spacing: 0.4em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 40px;
+        opacity: 0; transform: translateY(20px);
+        animation: rise 1.2s var(--ease) .6s forwards;
+      }
+      .hero-text h1 {
+        font-weight: 300; font-size: clamp(48px, 6vw, 92px);
+        line-height: 1.08; letter-spacing: -0.01em; color: var(--sumi);
+      }
+      .hero-text h1 em {
+        font-style: italic; color: var(--vermilion); font-weight: 400;
+      }
+      .hero-text h1 .line {
+        display: block; overflow: hidden;
+      }
+      .hero-text h1 .line > span {
+        display: inline-block; transform: translateY(110%);
+        animation: rise 1.4s var(--ease) forwards;
+      }
+      .hero-text h1 .l1 > span { animation-delay: .8s; }
+      .hero-text h1 .l2 > span { animation-delay: 1.0s; }
+      .hero-text h1 .l3 > span { animation-delay: 1.2s; }
+
+      .quiet {
+        margin-top: 56px; max-width: 480px;
+        font-family: "Inter", sans-serif; font-weight: 300;
+        font-size: 15px; line-height: 1.85; color: var(--sumi);
+        opacity: 0; transform: translateY(20px);
+        animation: rise 1.2s var(--ease) 1.5s forwards;
+      }
+
+      /* DIVIDER */
+      .divider {
+        margin: 160px 0; display: flex; align-items: center; gap: 32px;
+        font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted);
+      }
+      .divider::before { content: ""; flex: 1; height: 1px; background: var(--hair); transform: scaleX(0); transform-origin: left; animation: stretch 1.4s var(--ease) 1.8s forwards; }
+      .divider::after { content: ""; flex: 1; height: 1px; background: var(--hair); transform: scaleX(0); transform-origin: right; animation: stretch 1.4s var(--ease) 1.8s forwards; }
+      @keyframes stretch { to { transform: scaleX(1); } }
+
+      /* WORKS */
+      .works h2 {
+        font-family: "Noto Serif JP", serif; font-weight: 400;
+        font-size: 18px; letter-spacing: 0.3em; color: var(--sumi);
+        margin-bottom: 8px;
+      }
+      .works .sub2 {
+        font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 64px;
+      }
+      .work-list { list-style: none; }
+      .work-row {
+        display: grid; grid-template-columns: 50px 1fr 220px 80px 40px;
+        align-items: end; gap: 32px;
+        padding: 36px 0; border-bottom: 1px solid var(--hair);
+        cursor: pointer; position: relative;
+        opacity: 0; transform: translateY(30px);
+      }
+      .work-row.in { animation: rise 1.2s var(--ease) forwards; }
+      .work-row .idx { font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.3em; color: var(--muted); }
+      .work-row .name { font-size: 36px; font-weight: 300; letter-spacing: -0.005em; color: var(--sumi); transition: color .6s var(--ease), transform .6s var(--ease); }
+      .work-row .name em { font-style: italic; color: var(--vermilion); font-weight: 400; }
+      .work-row .cat { font-family: "Inter", sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+      .work-row .year { font-family: "Inter", sans-serif; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+      .work-row .arrow {
+        justify-self: end; font-size: 22px; color: var(--sumi);
+        transition: transform .6s var(--ease), color .4s var(--ease);
+      }
+      .work-row:hover .name { color: var(--vermilion); transform: translateX(12px); }
+      .work-row:hover .arrow { transform: translateX(10px); color: var(--vermilion); }
+      .work-row::before {
+        content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+        background: var(--vermilion); transform: scaleX(0); transform-origin: left;
+        transition: transform .8s var(--ease);
+      }
+      .work-row:hover::before { transform: scaleX(1); }
+
+      /* CONTACT */
+      .contact {
+        margin-top: 200px;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      }
+      .contact .left {
+        font-size: clamp(40px, 4.5vw, 64px); line-height: 1.1;
+        color: var(--sumi); font-weight: 300; letter-spacing: -0.01em;
+      }
+      .contact .left em { color: var(--vermilion); font-style: italic; }
+      .contact .left a {
+        color: var(--sumi); text-decoration: none; border-bottom: 1px solid var(--hair);
+        transition: color .5s var(--ease), border-color .5s var(--ease);
+      }
+      .contact .left a:hover { color: var(--vermilion); border-color: var(--vermilion); }
+      .contact .right {
+        font-family: "Inter", sans-serif; font-size: 14px; line-height: 1.8;
+        align-self: end; color: var(--sumi);
+      }
+      .contact .right .label { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+      .contact .right a { color: var(--sumi); text-decoration: none; display: block; padding: 4px 0; transition: color .4s var(--ease), padding-left .5s var(--ease); }
+      .contact .right a:hover { color: var(--vermilion); padding-left: 16px; }
+
+      /* FOOTER */
+      .foot {
+        margin-top: 120px; padding-top: 32px; border-top: 1px solid var(--hair);
+        display: flex; justify-content: space-between;
+        font-family: "Inter", sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+      }
+
+      @keyframes fade { to { opacity: 1; } }
+      @keyframes rise { to { opacity: 1; transform: translate(0,0); } }
+
+      @media (max-width: 900px) {
+        .wrap { padding: 32px 28px 80px; }
+        .hero { grid-template-columns: 1fr; gap: 40px; }
+        .seal { writing-mode: horizontal-tb; font-size: 56px; }
+        .contact { grid-template-columns: 1fr; gap: 40px; }
+        .work-row { grid-template-columns: 40px 1fr 30px; }
+        .work-row .cat, .work-row .year { display: none; }
+        .work-row .name { font-size: 26px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <div class="mark">
+          間 マ ガ ヤ エ ワ
+          <span class="sub">Sveta Magayaeva · Designer</span>
+        </div>
+        <nav class="nav-jp">
+          <a href="#about" data-jp="紹介">About</a>
+          <a href="#works" data-jp="作品">Works</a>
+          <a href="#contact" data-jp="連絡">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="seal">
+          静<br />寂<br />と<br />形
+          <span class="small">2026 · Quiet form</span>
+        </div>
+        <div class="hero-text">
+          <div class="kicker">Graphic Designer · since 2024</div>
+          <h1>
+            <span class="line l1"><span>Quiet design,</span></span>
+            <span class="line l2"><span>spoken in</span></span>
+            <span class="line l3"><span><em>brand, paper, screen.</em></span></span>
+          </h1>
+          <p class="quiet">
+            Я графический дизайнер. Создаю фирменные стили, упаковку и визуальные системы для социальных сетей — там, где формы держат воздух, а смысл важнее украшения.
+          </p>
+        </div>
+      </section>
+
+      <div class="divider">間 · the space between</div>
+
+      <section class="works" id="works">
+        <h2>作品集</h2>
+        <div class="sub2">Selected works · 2024 — 2025</div>
+
+        <ul class="work-list">
+          <li class="work-row">
+            <span class="idx">一 · 01</span>
+            <span class="name">The <em>Flex</em></span>
+            <span class="cat">Brand identity</span>
+            <span class="year">2025</span>
+            <span class="arrow">→</span>
+          </li>
+          <li class="work-row">
+            <span class="idx">二 · 02</span>
+            <span class="name"><em>Little</em> Minds</span>
+            <span class="cat">Brand · Print</span>
+            <span class="year">2025</span>
+            <span class="arrow">→</span>
+          </li>
+          <li class="work-row">
+            <span class="idx">三 · 03</span>
+            <span class="name"><em>Meraki</em></span>
+            <span class="cat">Packaging</span>
+            <span class="year">2024</span>
+            <span class="arrow">→</span>
+          </li>
+          <li class="work-row">
+            <span class="idx">四 · 04</span>
+            <span class="name">Karachaevsk</span>
+            <span class="cat">Place branding</span>
+            <span class="year">2024</span>
+            <span class="arrow">→</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="left">
+          A small <em>step</em> together,<br />
+          watched grow into<br />
+          <a href="mailto:s.magayaeva@mail.ru">something great →</a>
+        </div>
+        <div class="right">
+          <div class="label">Contact</div>
+          <a href="mailto:s.magayaeva@mail.ru">s.magayaeva@mail.ru</a>
+          <a href="tel:+79380292817">+7 938 029 28 17</a>
+          <br />
+          <a href="#">Behance</a>
+          <a href="#">Telegram</a>
+          <a href="#">Instagram</a>
+        </div>
+      </section>
+
+      <div class="foot">
+        <span>© 2026 · Sveta Magayaeva</span>
+        <span>Variant 02 · Japanese 間</span>
+      </div>
+    </div>
+
+    <script>
+      // intersection-observer animation for works
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            const rows = document.querySelectorAll(".work-row");
+            rows.forEach((r, idx) => { r.style.animationDelay = (idx * 0.12) + "s"; r.classList.add("in"); });
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      io.observe(document.querySelector(".work-list"));
+    </script>
+  </body>
+</html>

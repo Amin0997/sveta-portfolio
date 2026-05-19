@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveta Magayaeva — Editorial · Warm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --cream: #f5ede2;
+        --cream-2: #ebe1d2;
+        --ink: #2a1f17;
+        --ink-soft: #4d3b2a;
+        --muted: #9a8973;
+        --terracotta: #c2522d;
+        --terra-d: #9b3e1f;
+        --line: rgba(42,31,23,.18);
+        --ease: cubic-bezier(.2,.85,.3,1);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: var(--cream); color: var(--ink); }
+      body {
+        font-family: "EB Garamond", Georgia, serif;
+        font-weight: 400; font-size: 18px;
+        min-height: 100vh; overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection { background: var(--terracotta); color: var(--cream); }
+
+      .wrap { max-width: 1280px; margin: 0 auto; padding: 28px 56px 80px; }
+
+      /* TOP */
+      .top {
+        display: flex; justify-content: space-between; align-items: center;
+        padding-bottom: 20px; border-bottom: 1px solid var(--ink);
+        font-family: "Archivo", sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+        opacity: 0; animation: fade 1s var(--ease) .1s forwards;
+      }
+      .top .l { display: flex; gap: 24px; align-items: center; }
+      .top .l b { font-family: "EB Garamond", serif; font-weight: 500; font-size: 22px; font-style: italic; letter-spacing: -0.01em; text-transform: none; }
+      .top .r { display: flex; gap: 28px; }
+      .top a { color: var(--ink); text-decoration: none; transition: color .4s var(--ease); }
+      .top a:hover { color: var(--terracotta); }
+
+      /* MASTHEAD */
+      .masthead {
+        padding: 40px 0 20px; border-bottom: 1px solid var(--ink);
+        display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 24px;
+        font-family: "Archivo", sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-soft);
+      }
+      .masthead .center {
+        font-family: "EB Garamond", serif; text-transform: none; letter-spacing: -0.03em;
+        font-size: clamp(64px, 10vw, 160px); font-weight: 500; font-style: italic; line-height: 0.9;
+        color: var(--ink); white-space: nowrap;
+        overflow: hidden;
+      }
+      .masthead .center span {
+        display: inline-block; transform: translateY(110%);
+        animation: rise 1.3s var(--ease) .3s forwards;
+      }
+      .masthead .l { padding-bottom: 16px; }
+      .masthead .r { padding-bottom: 16px; text-align: right; }
+
+      /* TAGLINE */
+      .tagline {
+        padding: 40px 0;
+        display: grid; grid-template-columns: 2fr 1fr; gap: 56px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .tagline .lead {
+        font-family: "EB Garamond", serif; font-weight: 400;
+        font-size: clamp(28px, 3.4vw, 48px); line-height: 1.18; letter-spacing: -0.005em;
+        color: var(--ink);
+      }
+      .tagline .lead em { font-style: italic; color: var(--terracotta); }
+      .tagline .lead .drop {
+        float: left; font-family: "EB Garamond", serif; font-style: italic; font-weight: 500;
+        font-size: 4.5em; line-height: 0.82; padding: 8px 16px 0 0; color: var(--terracotta);
+      }
+      .tagline .side {
+        font-family: "Archivo", sans-serif; font-size: 13px; line-height: 1.7; color: var(--ink-soft);
+      }
+      .tagline .side .label {
+        font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: block;
+      }
+
+      /* COLUMNS — about */
+      .columns {
+        padding: 56px 0; border-bottom: 1px solid var(--ink);
+        column-count: 3; column-gap: 40px; column-rule: 1px solid var(--line);
+        font-size: 16px; line-height: 1.7; color: var(--ink-soft);
+      }
+      .columns h2 {
+        column-span: all;
+        font-family: "EB Garamond", serif; font-style: italic; font-weight: 500;
+        font-size: 36px; letter-spacing: -0.01em; color: var(--ink);
+        margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px dashed var(--line);
+      }
+      .columns p { margin-bottom: 14px; break-inside: avoid; }
+      .columns p strong { color: var(--terra-d); font-weight: 500; }
+      .columns .small-label {
+        font-family: "Archivo", sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 6px; display: block;
+      }
+
+      /* FEATURED — issue No */
+      .feature {
+        padding: 64px 0; border-bottom: 1px solid var(--ink);
+        display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: end;
+      }
+      .feature .label { font-family: "Archivo", sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+      .feature h2 {
+        font-family: "EB Garamond", serif; font-weight: 500; font-style: italic;
+        font-size: clamp(48px, 6vw, 88px); line-height: 1.0; letter-spacing: -0.02em;
+      }
+      .feature .v {
+        font-family: "Archivo", sans-serif; font-size: 14px; line-height: 1.7; color: var(--ink-soft);
+      }
+      .feature .v .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+      .feature .v .row .k { color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; font-size: 11px; }
+      .feature .v .row .val { font-family: "EB Garamond", serif; font-size: 18px; font-style: italic; color: var(--ink); }
+
+      /* WORKS */
+      .works { padding: 64px 0; }
+      .works-head {
+        display: flex; justify-content: space-between; align-items: end; margin-bottom: 40px;
+        padding-bottom: 16px; border-bottom: 1px solid var(--ink);
+      }
+      .works-head h2 {
+        font-family: "EB Garamond", serif; font-weight: 500; font-style: italic;
+        font-size: clamp(36px, 4.5vw, 64px); letter-spacing: -0.02em;
+      }
+      .works-head .meta { font-family: "Archivo", sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+
+      .article {
+        display: grid; grid-template-columns: 80px 1.4fr 1fr 100px 60px;
+        gap: 32px; align-items: end;
+        padding: 28px 0; border-bottom: 1px solid var(--line);
+        cursor: pointer; position: relative; overflow: hidden;
+        transition: padding .6s var(--ease);
+      }
+      .article::before {
+        content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--terracotta);
+        transform: scaleX(0); transform-origin: left; transition: transform .8s var(--ease);
+      }
+      .article:hover { padding-left: 16px; }
+      .article:hover::before { transform: scaleX(1); }
+      .article .idx {
+        font-family: "Archivo", sans-serif; font-size: 11px; letter-spacing: 0.25em; color: var(--muted);
+      }
+      .article .name {
+        font-family: "EB Garamond", serif; font-weight: 500;
+        font-size: clamp(28px, 3vw, 42px); letter-spacing: -0.015em; line-height: 1.05;
+        transition: color .4s var(--ease), transform .6s var(--ease);
+      }
+      .article .name em { font-style: italic; color: var(--terracotta); }
+      .article .desc { font-family: "Archivo", sans-serif; font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+      .article .year {
+        font-family: "EB Garamond", serif; font-style: italic; font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; text-align: right;
+      }
+      .article .arrow {
+        justify-self: end; font-family: "EB Garamond", serif; font-style: italic; font-size: 28px; color: var(--ink);
+        transition: transform .6s var(--ease), color .4s var(--ease);
+      }
+      .article:hover .name { color: var(--terra-d); transform: translateX(8px); }
+      .article:hover .arrow { transform: translateX(12px) rotate(-10deg); color: var(--terracotta); }
+
+      /* PULL QUOTE */
+      .pull {
+        padding: 80px 0; text-align: center; border-bottom: 1px solid var(--ink);
+      }
+      .pull blockquote {
+        font-family: "EB Garamond", serif; font-style: italic; font-weight: 400;
+        font-size: clamp(28px, 4vw, 56px); line-height: 1.2; letter-spacing: -0.01em;
+        max-width: 1000px; margin: 0 auto;
+      }
+      .pull blockquote em { color: var(--terracotta); font-weight: 500; }
+      .pull cite {
+        display: block; margin-top: 24px;
+        font-family: "Archivo", sans-serif; font-style: normal; font-size: 11px;
+        letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+      }
+
+      /* CONTACT */
+      .contact {
+        padding: 80px 0;
+        display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: end;
+      }
+      .contact h2 {
+        font-family: "EB Garamond", serif; font-weight: 500; font-style: italic;
+        font-size: clamp(48px, 6vw, 96px); line-height: 1.0; letter-spacing: -0.02em;
+      }
+      .contact h2 a {
+        color: var(--ink); text-decoration: none; position: relative; white-space: nowrap;
+      }
+      .contact h2 a::after {
+        content: ""; position: absolute; left: 0; bottom: 4px; height: 2px; background: var(--terracotta); width: 100%;
+        transform: scaleX(0); transform-origin: left;
+        transition: transform .8s var(--ease);
+      }
+      .contact h2 a:hover { color: var(--terracotta); }
+      .contact h2 a:hover::after { transform: scaleX(1); }
+      .contact .right { font-family: "Archivo", sans-serif; font-size: 14px; }
+      .contact .right .label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+      .contact .right a {
+        color: var(--ink); text-decoration: none;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 12px 0; border-bottom: 1px dashed var(--line);
+        transition: padding .5s var(--ease), color .4s var(--ease);
+      }
+      .contact .right a span:last-child { transition: transform .5s var(--ease); font-family: "EB Garamond", serif; font-style: italic; }
+      .contact .right a:hover { padding-left: 8px; color: var(--terracotta); }
+      .contact .right a:hover span:last-child { transform: translateX(8px); }
+
+      .colophon {
+        padding-top: 20px; border-top: 1px solid var(--ink);
+        display: flex; justify-content: space-between;
+        font-family: "Archivo", sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+      }
+
+      @keyframes fade { to { opacity: 1; } }
+      @keyframes rise { to { transform: translateY(0); } }
+
+      @media (max-width: 900px) {
+        .wrap { padding: 20px 24px 60px; }
+        .top { flex-direction: column; gap: 12px; align-items: flex-start; }
+        .masthead, .tagline, .feature, .contact { grid-template-columns: 1fr; gap: 28px; }
+        .masthead .center { font-size: 56px; white-space: normal; }
+        .columns { column-count: 1; }
+        .article { grid-template-columns: 50px 1fr 30px; }
+        .article .desc, .article .year { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <div class="l">
+          <b>The Sveta Quarterly</b>
+          <span>Vol. III · No. 04</span>
+        </div>
+        <nav class="r">
+          <a href="#about">About</a>
+          <a href="#works">Works</a>
+          <a href="#contact">Contact</a>
+          <span>EST. 2024</span>
+        </nav>
+      </header>
+
+      <section class="masthead">
+        <div class="l">
+          Issue<br /><b style="font-family:'EB Garamond'; font-size:22px; font-style:italic; letter-spacing:-0.01em; text-transform:none; color:var(--ink); font-weight:500;">№ 04</b>
+        </div>
+        <h1 class="center"><span>Sveta&nbsp;<em style="color:var(--terracotta)">Magayaeva</em></span></h1>
+        <div class="r">
+          Graphic<br /><b style="font-family:'EB Garamond'; font-size:22px; font-style:italic; letter-spacing:-0.01em; text-transform:none; color:var(--ink); font-weight:500;">Designer</b>
+        </div>
+      </section>
+
+      <section class="tagline">
+        <p class="lead">
+          <span class="drop">Б</span>ольшие цели достигаются <em>маленькими шагами.</em> Делаю фирменные стили, упаковку и дизайн для социальных сетей — спокойно, с вниманием к ритму и форме.
+        </p>
+        <aside class="side">
+          <span class="label">In this issue</span>
+          Selected works 2024–2025, studio note, the case for slow design, and a brief letter on packaging that lingers.
+        </aside>
+      </section>
+
+      <section class="columns" id="about">
+        <h2>About the designer.</h2>
+
+        <span class="small-label">Practice</span>
+        <p>Я графический дизайнер с интересом к визуальному искусству и стремлением создавать уникальные, запоминающиеся проекты. Изучаю новые тренды и техники, чтобы постоянно совершенствоваться и предлагать клиентам лучшее.</p>
+        <p>Быстро обучаюсь и открыта новому опыту. Это помогает мне развиваться как специалисту — и держать свежесть взгляда в каждом новом проекте.</p>
+
+        <span class="small-label">Education</span>
+        <p><strong>Bang Bang Education</strong> — профессиональная переподготовка, «Графический дизайн». 2024 – по н.в.</p>
+        <p><strong>Design Wonderland</strong> — Графический дизайнер (2024), Стратегия и дизайн соц-сетей (2025), Нейросети (2025).</p>
+
+        <span class="small-label">Toolkit</span>
+        <p>After Effects · Photoshop · InDesign · Figma · Illustrator · Modern graphical AIs. Использую инструменты как продолжение мысли, а не как самоцель.</p>
+      </section>
+
+      <section class="feature">
+        <div>
+          <div class="label">Featured · Studio</div>
+          <h2>Quiet design,<br />warm paper.</h2>
+        </div>
+        <div class="v">
+          <div class="row"><span class="k">Specialization</span><span class="val">Brand · Pack · Social</span></div>
+          <div class="row"><span class="k">Based</span><span class="val">Russia, remote</span></div>
+          <div class="row"><span class="k">Born</span><span class="val">20 / 06 / 2001</span></div>
+          <div class="row"><span class="k">Status</span><span class="val">Available · Winter 2026</span></div>
+          <div class="row"><span class="k">Languages</span><span class="val">RU · EN</span></div>
+        </div>
+      </section>
+
+      <section class="works" id="works">
+        <div class="works-head">
+          <h2>Selected works.</h2>
+          <span class="meta">Index · 04 of 04</span>
+        </div>
+
+        <article class="article">
+          <span class="idx">№ 01</span>
+          <h3 class="name">The <em>Flex</em></h3>
+          <p class="desc">A confident identity built on rhythm, motion, and a single hue.</p>
+          <span class="year">2025</span>
+          <span class="arrow">↗</span>
+        </article>
+        <article class="article">
+          <span class="idx">№ 02</span>
+          <h3 class="name"><em>Little</em> Minds</h3>
+          <p class="desc">Brand &amp; print system for a small studio of curious thinkers.</p>
+          <span class="year">2025</span>
+          <span class="arrow">↗</span>
+        </article>
+        <article class="article">
+          <span class="idx">№ 03</span>
+          <h3 class="name">Meraki</h3>
+          <p class="desc">Packaging that asks to be held — paper, type, a little warmth.</p>
+          <span class="year">2024</span>
+          <span class="arrow">↗</span>
+        </article>
+        <article class="article">
+          <span class="idx">№ 04</span>
+          <h3 class="name">Karachaevsk</h3>
+          <p class="desc">Place branding rooted in landscape, language, and quiet pride.</p>
+          <span class="year">2024</span>
+          <span class="arrow">↗</span>
+        </article>
+      </section>
+
+      <section class="pull">
+        <blockquote>
+          “Big goals can be achieved by taking <em>small steps.</em> Let's take that step together and watch it grow into something great.”
+        </blockquote>
+        <cite>— Studio note · S. Magayaeva</cite>
+      </section>
+
+      <section class="contact" id="contact">
+        <h2>
+          Write&nbsp;to&nbsp;the&nbsp;studio —<br />
+          <a href="mailto:s.magayaeva@mail.ru">s.magayaeva@mail.ru</a>
+        </h2>
+        <div class="right">
+          <div class="label">Find me</div>
+          <a href="tel:+79380292817"><span>+7 938 029 28 17</span><span>↗</span></a>
+          <a href="#"><span>Behance</span><span>↗</span></a>
+          <a href="#"><span>Telegram</span><span>↗</span></a>
+          <a href="#"><span>Instagram</span><span>↗</span></a>
+        </div>
+      </section>
+
+      <div class="colophon">
+        <span>© 2026 · The Sveta Quarterly</span>
+        <span>Set in EB Garamond &amp; Archivo</span>
+        <span>Variant 05 · Warm editorial</span>
+      </div>
+    </div>
+
+    <script>
+      // articles reveal on scroll
+      const articles = document.querySelectorAll(".article, .pull, .contact, .feature, .columns");
+      articles.forEach(a => {
+        a.style.opacity = 0;
+        a.style.transform = "translateY(28px)";
+        a.style.transition = "opacity 1s cubic-bezier(.2,.85,.3,1), transform 1s cubic-bezier(.2,.85,.3,1)";
+      });
+      const io = new IntersectionObserver(es => es.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (Math.min(i, 4) * 0.08) + "s";
+          e.target.style.opacity = 1;
+          e.target.style.transform = "translateY(0)";
+          io.unobserve(e.target);
+        }
+      }), { threshold: .14 });
+      articles.forEach(a => io.observe(a));
+    </script>
+  </body>
+</html>

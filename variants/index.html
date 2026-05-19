@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveta Magayaeva — варианты сайта-визитки</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f4f4f2;
+        color: #111;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 80px 40px 120px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #111;
+        margin-bottom: 48px;
+      }
+      header h1 {
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      header p {
+        font-size: 14px;
+        color: #777;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e5e5e2;
+        padding: 28px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 220px;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0,0,0,.06);
+        border-color: #111;
+      }
+      .num {
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        color: #999;
+        margin-bottom: 24px;
+      }
+      .title {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+      .meta {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+      }
+      .swatch {
+        margin-top: auto;
+        display: flex;
+        gap: 6px;
+        padding-top: 24px;
+      }
+      .swatch span {
+        width: 20px;
+        height: 20px;
+        border: 1px solid rgba(0,0,0,.08);
+        border-radius: 50%;
+      }
+      footer {
+        margin-top: 80px;
+        font-size: 12px;
+        color: #999;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Sveta Magayaeva — 5 вариантов сайта-визитки</h1>
+        <p>минимализм · разные оттенки</p>
+      </header>
+
+      <div class="grid">
+        <a class="card" href="./v1-swiss.html">
+          <div class="num">01 / SWISS</div>
+          <div class="title">Швейцарский</div>
+          <div class="meta">Сетка, Helvetica, красный акцент. Графическая точность.</div>
+          <div class="swatch">
+            <span style="background:#fff"></span>
+            <span style="background:#111"></span>
+            <span style="background:#e63946"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v2-japanese.html">
+          <div class="num">02 / JAPANESE</div>
+          <div class="title">Японский</div>
+          <div class="meta">Воздух, серiф, sumi-чёрный. Дзен и пустота.</div>
+          <div class="swatch">
+            <span style="background:#f6f3ee"></span>
+            <span style="background:#1a1a1a"></span>
+            <span style="background:#8a3a2a"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v3-scandinavian.html">
+          <div class="num">03 / SCANDINAVIAN</div>
+          <div class="title">Скандинавский</div>
+          <div class="meta">Бежевый, шалфей, мягкие гротески. Уютно и спокойно.</div>
+          <div class="swatch">
+            <span style="background:#ece7dd"></span>
+            <span style="background:#7a8a73"></span>
+            <span style="background:#2b2b2b"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v4-mono.html">
+          <div class="num">04 / MONOCHROME</div>
+          <div class="title">Монохром</div>
+          <div class="meta">Чистый чёрный/белый. Дисплейный сериф, редакционный ритм.</div>
+          <div class="swatch">
+            <span style="background:#fff"></span>
+            <span style="background:#000"></span>
+            <span style="background:#bdbdbd"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v5-warm.html">
+          <div class="num">05 / WARM</div>
+          <div class="title">Тёплый off-white</div>
+          <div class="meta">Крем, терракот, смешанная типографика. Журнальный стиль.</div>
+          <div class="swatch">
+            <span style="background:#f5ede2"></span>
+            <span style="background:#c2522d"></span>
+            <span style="background:#2a1f17"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v6-editorial-bold.html">
+          <div class="num">06 / EDITORIAL BOLD</div>
+          <div class="title">Крупный сериф</div>
+          <div class="meta">Bodoni, асимметричная сетка, гигантский номер-призрак на фоне.</div>
+          <div class="swatch">
+            <span style="background:#f1ece4"></span>
+            <span style="background:#c33828"></span>
+            <span style="background:#b18a4a"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v7-bento.html">
+          <div class="num">07 / BENTO</div>
+          <div class="title">Модульная сетка</div>
+          <div class="meta">Карточки разных размеров, мягкие цвета, пастельные акценты.</div>
+          <div class="swatch">
+            <span style="background:#ecebe6"></span>
+            <span style="background:#efb78a"></span>
+            <span style="background:#6b3a4c"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v8-sidenav-split.html">
+          <div class="num">08 / SIDEBAR</div>
+          <div class="title">Боковая навигация</div>
+          <div class="meta">Тёмный фон, фиксированный сайдбар, лаймовый акцент, split-hero.</div>
+          <div class="swatch">
+            <span style="background:#0f0e0c"></span>
+            <span style="background:#c4ff3d"></span>
+            <span style="background:#ece7d9"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v9-sticker.html">
+          <div class="num">09 / COLLAGE</div>
+          <div class="title">Стикеры и скотч</div>
+          <div class="meta">Кремовая бумага, повёрнутые карточки, синий и красный акценты, рукопись.</div>
+          <div class="swatch">
+            <span style="background:#f5f0e6"></span>
+            <span style="background:#2c4a8a"></span>
+            <span style="background:#d24a31"></span>
+          </div>
+        </a>
+
+        <a class="card" href="./v10-marquee.html">
+          <div class="num">10 / MARQUEE</div>
+          <div class="title">Бегущие строки</div>
+          <div class="meta">Тёмно-зелёный фон, кремовая типографика, слоёные marquee, рустовый акцент.</div>
+          <div class="swatch">
+            <span style="background:#14201a"></span>
+            <span style="background:#cdd49a"></span>
+            <span style="background:#d36b3e"></span>
+          </div>
+        </a>
+      </div>
+
+      <footer>© 2026 · Sveta Magayaeva · graphic designer</footer>
+    </div>
+  </body>
+</html>

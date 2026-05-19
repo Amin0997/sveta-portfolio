@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveta Magayaeva — Studio · Sidebar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0f0e0c;
+        --bg-2: #16140f;
+        --ink: #ece7d9;
+        --muted: #8a8478;
+        --lime: #c4ff3d;
+        --line: rgba(236,231,217,.14);
+        --ease: cubic-bezier(.2,.85,.3,1);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: var(--bg); color: var(--ink); }
+      body {
+        font-family: "Manrope", -apple-system, sans-serif;
+        font-weight: 400; -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      ::selection { background: var(--lime); color: var(--bg); }
+
+      /* SIDEBAR */
+      aside.side {
+        position: fixed; top: 0; left: 0; bottom: 0;
+        width: 240px;
+        background: var(--bg-2);
+        border-right: 1px solid var(--line);
+        padding: 36px 28px;
+        display: flex; flex-direction: column;
+        z-index: 10;
+        opacity: 0; transform: translateX(-10px);
+        animation: slideIn .9s var(--ease) .1s forwards;
+      }
+      .side .logo {
+        font-family: "Newsreader", serif; font-style: italic; font-weight: 500;
+        font-size: 26px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px;
+        margin-bottom: 64px;
+      }
+      .side .logo .dot { width: 10px; height: 10px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 0 4px rgba(196,255,61,.18); animation: pulse 2.4s var(--ease) infinite; }
+      @keyframes pulse { 0%,100%{box-shadow:0 0 0 4px rgba(196,255,61,.18);} 50%{box-shadow:0 0 0 9px rgba(196,255,61,0);} }
+
+      .side .label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+      .side nav { display: flex; flex-direction: column; gap: 4px; margin-bottom: 40px; }
+      .side nav a {
+        text-decoration: none; color: var(--ink);
+        font-size: 15px; font-weight: 500; letter-spacing: -0.005em;
+        padding: 10px 12px; border-radius: 10px;
+        display: flex; justify-content: space-between; align-items: center;
+        transition: background .4s var(--ease), color .4s var(--ease), padding-left .4s var(--ease);
+      }
+      .side nav a .n { font-family: "Newsreader", serif; font-style: italic; font-size: 12px; color: var(--muted); }
+      .side nav a:hover { background: rgba(236,231,217,.06); padding-left: 16px; }
+      .side nav a.active { background: var(--lime); color: var(--bg); }
+      .side nav a.active .n { color: var(--bg); }
+
+      .side .contacts { margin-top: auto; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+      .side .contacts a { color: var(--ink); text-decoration: none; display: flex; justify-content: space-between; transition: color .4s var(--ease), padding-left .4s var(--ease); }
+      .side .contacts a:hover { color: var(--lime); padding-left: 4px; }
+
+      .side .now { margin-top: 24px; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+      .side .now::before { content: ""; width: 7px; height: 7px; background: var(--lime); border-radius: 50%; }
+
+      /* MAIN */
+      main { margin-left: 240px; min-height: 100vh; }
+      .container { max-width: 1240px; padding: 32px 56px 80px; }
+
+      /* TOP BAR */
+      .topbar {
+        display: flex; justify-content: space-between; align-items: center;
+        padding-bottom: 18px; border-bottom: 1px solid var(--line);
+        font-size: 12px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+      }
+      .topbar .chip {
+        background: rgba(196,255,61,.1); color: var(--lime);
+        padding: 6px 14px; border-radius: 999px;
+        display: flex; align-items: center; gap: 8px;
+        font-size: 11px; letter-spacing: 0.2em;
+      }
+      .topbar .chip::before { content: ""; width: 6px; height: 6px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+
+      /* HERO — split */
+      .hero {
+        margin-top: 56px;
+        display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px;
+        align-items: end;
+        padding-bottom: 64px; border-bottom: 1px solid var(--line);
+      }
+      .hero .kicker {
+        font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
+        margin-bottom: 24px;
+      }
+      .hero h1 {
+        font-family: "Newsreader", serif; font-weight: 400;
+        font-size: clamp(56px, 8vw, 132px); line-height: 0.92; letter-spacing: -0.03em;
+        color: var(--ink);
+      }
+      .hero h1 em { font-style: italic; color: var(--lime); }
+      .hero h1 .line { display: block; overflow: hidden; }
+      .hero h1 .line > span { display: inline-block; transform: translateY(110%); animation: rise 1.3s var(--ease) forwards; }
+      .hero h1 .l1 > span { animation-delay: .3s; }
+      .hero h1 .l2 > span { animation-delay: .45s; }
+      .hero h1 .l3 > span { animation-delay: .6s; }
+
+      .hero .right {
+        font-size: 16px; line-height: 1.65; color: var(--muted); max-width: 380px;
+        opacity: 0; animation: fade 1.2s var(--ease) 1s forwards;
+      }
+      .hero .right .meta-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;
+        padding-top: 24px; border-top: 1px solid var(--line);
+      }
+      .hero .right .meta-grid .lbl { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+      .hero .right .meta-grid .val { font-family: "Newsreader", serif; font-size: 22px; font-style: italic; color: var(--ink); }
+
+      /* SERVICES — horizontal scroller-ish strip */
+      .strip {
+        margin-top: 72px;
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      }
+      .strip .item {
+        background: var(--bg-2); border: 1px solid var(--line);
+        border-radius: 16px; padding: 28px;
+        min-height: 200px;
+        display: flex; flex-direction: column; justify-content: space-between;
+        position: relative; overflow: hidden;
+        transition: transform .6s var(--ease), border-color .4s var(--ease), background .5s var(--ease);
+        opacity: 0; transform: translateY(28px);
+      }
+      .strip .item.show { animation: up .9s var(--ease) forwards; }
+      .strip .item:hover { border-color: var(--lime); transform: translateY(-4px); }
+      .strip .item .n { font-family: "Newsreader", serif; font-style: italic; font-size: 14px; color: var(--lime); }
+      .strip .item h3 { font-family: "Newsreader", serif; font-weight: 400; font-size: 28px; letter-spacing: -0.01em; }
+      .strip .item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+      /* WORKS — alternating asymmetric rows */
+      .works { margin-top: 96px; }
+      .works-h {
+        display: flex; justify-content: space-between; align-items: end;
+        padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 32px;
+      }
+      .works-h h2 {
+        font-family: "Newsreader", serif; font-weight: 400;
+        font-size: clamp(36px, 4.5vw, 64px); letter-spacing: -0.02em;
+      }
+      .works-h h2 em { color: var(--lime); font-style: italic; }
+      .works-h .count { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+
+      .work {
+        display: grid; gap: 32px; align-items: center;
+        padding: 28px 0; border-bottom: 1px solid var(--line);
+        cursor: pointer;
+        transition: padding .6s var(--ease);
+      }
+      .work.l { grid-template-columns: 60px 260px 1fr 100px 50px; }
+      .work.r { grid-template-columns: 50px 100px 1fr 260px 60px; }
+      .work .idx { font-family: "Newsreader", serif; font-style: italic; font-size: 22px; color: var(--lime); }
+      .work .visual {
+        height: 140px; border-radius: 14px;
+        position: relative; overflow: hidden;
+        transition: transform .6s var(--ease);
+      }
+      .work:hover .visual { transform: scale(1.04); }
+      .work .visual::before {
+        content: ""; position: absolute; inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 60%);
+      }
+      .work .info h3 {
+        font-family: "Newsreader", serif; font-weight: 400;
+        font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.015em; line-height: 1.05;
+        transition: color .4s var(--ease), transform .6s var(--ease);
+      }
+      .work .info h3 em { font-style: italic; color: var(--lime); }
+      .work .info p { font-size: 13px; color: var(--muted); margin-top: 8px; }
+      .work .yr { font-size: 13px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; text-align: right; }
+      .work.r .yr { text-align: left; }
+      .work .arr {
+        justify-self: end; width: 42px; height: 42px;
+        border: 1px solid var(--line); border-radius: 50%;
+        display: grid; place-items: center; font-size: 14px;
+        transition: background .5s var(--ease), color .5s var(--ease), transform .6s var(--ease);
+      }
+      .work:hover { padding-left: 16px; padding-right: 16px; }
+      .work:hover .arr { background: var(--lime); color: var(--bg); border-color: var(--lime); transform: rotate(-45deg); }
+      .work:hover .info h3 { color: var(--lime); transform: translateX(6px); }
+
+      .v1 { background: linear-gradient(135deg, #66b6cf, #0F7FA6); }
+      .v2 { background: linear-gradient(135deg, #f0a78d, #ED582E); }
+      .v3 { background: linear-gradient(135deg, #c08099, #7D002D); }
+      .v4 { background: linear-gradient(135deg, #b8c98a, #76992E); }
+
+      /* CTA */
+      .cta {
+        margin-top: 96px;
+        background: var(--lime); color: var(--bg);
+        border-radius: 24px; padding: 64px;
+        display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px;
+        align-items: center;
+      }
+      .cta h2 {
+        font-family: "Newsreader", serif; font-weight: 400; font-style: italic;
+        font-size: clamp(40px, 5.5vw, 80px); line-height: 1; letter-spacing: -0.02em;
+      }
+      .cta h2 a { color: var(--bg); text-decoration: none; position: relative; }
+      .cta h2 a::after {
+        content: ""; position: absolute; left: 0; bottom: 4px; height: 3px; width: 100%; background: var(--bg);
+        transform: scaleX(1); transform-origin: right;
+        transition: transform .8s var(--ease);
+      }
+      .cta h2 a:hover::after { transform: scaleX(0); }
+      .cta .info { font-size: 14px; line-height: 1.7; }
+      .cta .info .label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; opacity: .7; margin-bottom: 14px; }
+
+      .foot {
+        margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line);
+        display: flex; justify-content: space-between;
+        font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+      }
+
+      @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+      @keyframes fade { to { opacity: 1; } }
+      @keyframes rise { to { transform: translateY(0); } }
+      @keyframes up { to { opacity: 1; transform: translateY(0); } }
+
+      @media (max-width: 1000px) {
+        aside.side { position: relative; width: 100%; flex-direction: row; flex-wrap: wrap; gap: 12px; padding: 18px 22px; border-right: none; border-bottom: 1px solid var(--line); }
+        aside.side .logo, aside.side .contacts, aside.side .now { margin: 0; }
+        aside.side .label { display: none; }
+        aside.side nav { flex-direction: row; flex-wrap: wrap; margin: 0; gap: 6px; }
+        aside.side nav a .n { display: none; }
+        main { margin-left: 0; }
+        .container { padding: 22px 22px 60px; }
+        .hero, .strip, .cta { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }
+        .cta { padding: 36px 28px; }
+        .work.l, .work.r { grid-template-columns: 40px 1fr 36px; }
+        .work .visual, .work .yr { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="side">
+      <div class="logo"><span class="dot"></span> Sveta · M.</div>
+
+      <div class="label">Menu</div>
+      <nav>
+        <a href="#about" class="active"><span>Home</span><span class="n">/ 01</span></a>
+        <a href="#about"><span>About</span><span class="n">/ 02</span></a>
+        <a href="#services"><span>Services</span><span class="n">/ 03</span></a>
+        <a href="#works"><span>Works</span><span class="n">/ 04</span></a>
+        <a href="#contact"><span>Contact</span><span class="n">/ 05</span></a>
+      </nav>
+
+      <div class="label">Connect</div>
+      <div class="contacts">
+        <a href="#"><span>Behance</span><span>↗</span></a>
+        <a href="#"><span>Telegram</span><span>↗</span></a>
+        <a href="#"><span>Instagram</span><span>↗</span></a>
+        <a href="mailto:s.magayaeva@mail.ru"><span>Email</span><span>↗</span></a>
+      </div>
+
+      <div class="now" id="now">Available · 2026</div>
+    </aside>
+
+    <main>
+      <div class="container">
+        <div class="topbar">
+          <span>Sveta Magayaeva · Graphic Designer</span>
+          <span class="chip">Booking · Winter '26</span>
+        </div>
+
+        <section class="hero" id="about">
+          <div>
+            <div class="kicker">— Index · No. 01</div>
+            <h1>
+              <span class="line l1"><span>Design that</span></span>
+              <span class="line l2"><span>holds <em>still</em></span></span>
+              <span class="line l3"><span>under attention.</span></span>
+            </h1>
+          </div>
+          <div class="right">
+            Я делаю фирменные стили, упаковку и системы для социальных сетей. Тихие, выверенные, с уважением к ритму и материалу — чтобы дизайн оставался уместным, когда вокруг шумно.
+            <div class="meta-grid">
+              <div><div class="lbl">Based</div><div class="val">Russia · remote</div></div>
+              <div><div class="lbl">Since</div><div class="val">2024</div></div>
+              <div><div class="lbl">Practice</div><div class="val">Brand / Pack / Social</div></div>
+              <div><div class="lbl">Languages</div><div class="val">RU · EN</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="strip" id="services">
+          <div class="item">
+            <span class="n">/ 01</span>
+            <div>
+              <h3>Brand Identity</h3>
+              <p>Логотипы, фирменные системы, гайды по применению.</p>
+            </div>
+          </div>
+          <div class="item">
+            <span class="n">/ 02</span>
+            <div>
+              <h3>Packaging</h3>
+              <p>Упаковка, в которой материал, тип и форма работают вместе.</p>
+            </div>
+          </div>
+          <div class="item">
+            <span class="n">/ 03</span>
+            <div>
+              <h3>Social Design</h3>
+              <p>Шаблоны и системы для бренда в соц-сетях.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="works" id="works">
+          <div class="works-h">
+            <h2>Selected <em>works</em></h2>
+            <span class="count">04 — '24 / '25</span>
+          </div>
+
+          <article class="work l">
+            <span class="idx">01</span>
+            <div class="visual v1"></div>
+            <div class="info">
+              <h3>The <em>Flex</em></h3>
+              <p>A confident identity built on rhythm, motion, and a single hue.</p>
+            </div>
+            <span class="yr">2025 · Identity</span>
+            <span class="arr">→</span>
+          </article>
+
+          <article class="work r">
+            <span class="idx">02</span>
+            <span class="yr">2025 · Brand</span>
+            <div class="info">
+              <h3><em>Little</em> Minds</h3>
+              <p>Brand &amp; print system for a small studio of curious thinkers.</p>
+            </div>
+            <div class="visual v2"></div>
+            <span class="arr">→</span>
+          </article>
+
+          <article class="work l">
+            <span class="idx">03</span>
+            <div class="visual v3"></div>
+            <div class="info">
+              <h3>Meraki</h3>
+              <p>Packaging that asks to be held — paper, type, a little warmth.</p>
+            </div>
+            <span class="yr">2024 · Pack</span>
+            <span class="arr">→</span>
+          </article>
+
+          <article class="work r">
+            <span class="idx">04</span>
+            <span class="yr">2024 · Place</span>
+            <div class="info">
+              <h3>Karachaevsk</h3>
+              <p>Place branding rooted in landscape, language, and quiet pride.</p>
+            </div>
+            <div class="visual v4"></div>
+            <span class="arr">→</span>
+          </article>
+        </section>
+
+        <section class="cta" id="contact">
+          <h2>
+            Let's take<br />
+            that <em style="font-style:italic;">small step —</em><br />
+            <a href="mailto:s.magayaeva@mail.ru">s.magayaeva@mail.ru</a>
+          </h2>
+          <div class="info">
+            <div class="label">Direct</div>
+            <p style="font-family:'Newsreader',serif;font-size:22px;font-style:italic;margin-bottom:14px;">+7 938 029 28 17</p>
+            <p>Прямой номер. Пишите письмом или сообщением — отвечаю в течение дня.</p>
+          </div>
+        </section>
+
+        <div class="foot">
+          <span>© 2026 · Sveta Magayaeva</span>
+          <span>Variant 08 · Sidebar Split</span>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // clock-like 'now' indicator
+      const nw = document.getElementById("now");
+      const tick = () => {
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2,"0");
+        const mm = String(d.getMinutes()).padStart(2,"0");
+        nw.textContent = "Available · " + hh + ":" + mm + " MSK";
+      };
+      tick(); setInterval(tick, 30000);
+
+      // reveal services
+      const items = document.querySelectorAll(".strip .item, .work");
+      items.forEach((it, i) => {
+        it.style.opacity = 0;
+        it.style.transform = "translateY(28px)";
+        it.style.transition = "opacity .9s cubic-bezier(.2,.85,.3,1), transform .9s cubic-bezier(.2,.85,.3,1)";
+        it.style.transitionDelay = (i % 4 * 0.08) + "s";
+      });
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = 1;
+          e.target.style.transform = "translateY(0)";
+          io.unobserve(e.target);
+        }
+      }), { threshold: .14 });
+      items.forEach(it => io.observe(it));
+
+      // scroll-spy for sidenav
+      const links = document.querySelectorAll(".side nav a");
+      const sections = ["about", "services", "works", "contact"].map(id => document.getElementById(id));
+      const setActive = (id) => links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+      const spy = new IntersectionObserver(es => {
+        es.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+      }, { threshold: 0.35 });
+      sections.forEach(s => s && spy.observe(s));
+    </script>
+  </body>
+</html>

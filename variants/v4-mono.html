@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveta Magayaeva — Graphic Designer · Black & White</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --black: #000;
+        --white: #fff;
+        --grey: #b6b6b6;
+        --grey-d: #6e6e6e;
+        --ease: cubic-bezier(.16,1,.3,1);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: var(--black); color: var(--white); }
+      body {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 400; font-size: 14px;
+        min-height: 100vh; -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      ::selection { background: var(--white); color: var(--black); }
+
+      /* GRAIN */
+      .grain {
+        position: fixed; inset: 0; pointer-events: none; z-index: 50;
+        opacity: .08; mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      .wrap { max-width: 1320px; margin: 0 auto; padding: 32px 48px 80px; }
+
+      /* TOP */
+      .top {
+        display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+        padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.15);
+        opacity: 0; animation: fade 1s var(--ease) .1s forwards;
+      }
+      .logo {
+        font-family: "Playfair Display", serif; font-size: 22px; letter-spacing: 0.02em;
+        font-style: italic; font-weight: 500;
+      }
+      .center-mark {
+        text-align: center; font-size: 11px; letter-spacing: 0.4em; color: var(--grey); text-transform: uppercase;
+      }
+      .top-right { text-align: right; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); }
+      .top-right .dot {
+        display: inline-block; width: 6px; height: 6px; background: #fff; border-radius: 50%; margin-right: 8px; vertical-align: 2px;
+        animation: blink 1.6s steps(1) infinite;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+
+      /* HERO */
+      .hero {
+        min-height: 76vh;
+        display: grid; grid-template-rows: auto 1fr auto; gap: 40px;
+        padding: 80px 0 40px;
+      }
+      .hero .num {
+        font-size: 11px; letter-spacing: 0.4em; color: var(--grey);
+        opacity: 0; animation: fade 1s var(--ease) .4s forwards;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif; font-weight: 400;
+        font-size: clamp(64px, 11vw, 200px); line-height: 0.9; letter-spacing: -0.04em;
+      }
+      .hero h1 em { font-style: italic; color: var(--grey); }
+      .hero h1 .line { display: block; overflow: hidden; }
+      .hero h1 .line > span {
+        display: inline-block; transform: translateY(110%);
+        animation: rise 1.4s var(--ease) forwards;
+      }
+      .hero h1 .l1 > span { animation-delay: .4s; }
+      .hero h1 .l2 > span { animation-delay: .55s; }
+      .hero h1 .l3 > span { animation-delay: .7s; }
+
+      .hero-meta {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        font-size: 12px; letter-spacing: 0.05em; color: var(--grey);
+        padding-top: 32px; border-top: 1px solid rgba(255,255,255,.15);
+        opacity: 0; animation: fade 1s var(--ease) 1.2s forwards;
+      }
+      .hero-meta .label { color: var(--grey-d); display: block; margin-bottom: 6px; letter-spacing: 0.2em; text-transform: uppercase; font-size: 10px; }
+      .hero-meta .v { color: var(--white); font-family: "Playfair Display", serif; font-size: 18px; font-style: italic; }
+
+      /* MARQUEE */
+      .marquee {
+        margin-top: 80px;
+        font-family: "Playfair Display", serif; font-style: italic;
+        font-size: clamp(48px, 7vw, 96px); font-weight: 400; line-height: 1;
+        white-space: nowrap; overflow: hidden;
+        border-top: 1px solid rgba(255,255,255,.15);
+        border-bottom: 1px solid rgba(255,255,255,.15);
+        padding: 32px 0;
+      }
+      .marquee-track { display: inline-flex; gap: 64px; animation: scroll 32s linear infinite; }
+      .marquee-track span { display: inline-block; }
+      .marquee-track .ast { color: var(--grey-d); }
+      @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* WORKS */
+      .works { margin-top: 120px; }
+      .works-head {
+        display: flex; justify-content: space-between; align-items: end; margin-bottom: 48px;
+        font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey);
+      }
+      .works-head .lhs {
+        font-family: "Playfair Display", serif; font-style: italic; font-size: 18px; color: var(--white); letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .works-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+      .row {
+        display: grid; grid-template-columns: 80px 1.5fr 1fr 100px 60px;
+        align-items: center; gap: 32px;
+        padding: 36px 0; border-top: 1px solid rgba(255,255,255,.15);
+        position: relative; cursor: pointer; overflow: hidden;
+        transition: padding .6s var(--ease);
+      }
+      .row:last-child { border-bottom: 1px solid rgba(255,255,255,.15); }
+      .row::before {
+        content: ""; position: absolute; inset: 0; background: var(--white); transform: scaleY(0);
+        transform-origin: bottom; transition: transform .6s var(--ease); z-index: 0;
+      }
+      .row > * { position: relative; z-index: 1; transition: color .5s var(--ease); }
+      .row:hover { padding-left: 32px; padding-right: 32px; }
+      .row:hover::before { transform: scaleY(1); transform-origin: top; }
+      .row:hover > * { color: var(--black); }
+      .row .idx { font-size: 11px; letter-spacing: 0.3em; color: var(--grey); }
+      .row .name { font-family: "Playfair Display", serif; font-size: 40px; font-weight: 400; letter-spacing: -0.015em; }
+      .row .name em { font-style: italic; color: var(--grey); }
+      .row:hover .name em { color: var(--grey-d); }
+      .row .cat { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); }
+      .row .year { font-size: 14px; color: var(--grey); font-variant-numeric: tabular-nums; }
+      .row .arrow { justify-self: end; font-size: 22px; transition: transform .5s var(--ease); }
+      .row:hover .arrow { transform: translateX(10px) rotate(-12deg); }
+
+      /* QUOTE */
+      .quote {
+        margin-top: 160px; max-width: 1000px;
+        font-family: "Playfair Display", serif; font-style: italic; font-weight: 400;
+        font-size: clamp(28px, 4vw, 56px); line-height: 1.18; letter-spacing: -0.01em;
+      }
+      .quote .open, .quote .close { color: var(--grey-d); font-size: 1.6em; line-height: 0; vertical-align: -0.15em; }
+      .quote .sig { display: block; margin-top: 40px; font-style: normal; font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--grey); }
+
+      /* CONTACT */
+      .contact {
+        margin-top: 160px;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+        padding-top: 48px; border-top: 1px solid rgba(255,255,255,.15);
+      }
+      .contact h2 {
+        font-family: "Playfair Display", serif; font-weight: 400; font-style: italic;
+        font-size: clamp(40px, 5.5vw, 80px); line-height: 1; letter-spacing: -0.02em;
+      }
+      .contact h2 a { color: var(--white); text-decoration: none; position: relative; }
+      .contact h2 a::after {
+        content: ""; position: absolute; left: 0; bottom: 6px; height: 2px; width: 100%;
+        background: var(--white); transform: scaleX(1); transform-origin: right;
+        transition: transform .8s var(--ease);
+      }
+      .contact h2 a:hover::after { transform: scaleX(0); }
+      .contact .right {
+        align-self: end; display: flex; flex-direction: column; gap: 10px;
+        font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase;
+      }
+      .contact .right a {
+        color: var(--white); text-decoration: none;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.15);
+        transition: padding .5s var(--ease), color .4s var(--ease);
+      }
+      .contact .right a span:last-child { transition: transform .5s var(--ease); }
+      .contact .right a:hover { padding-left: 8px; color: var(--grey); }
+      .contact .right a:hover span:last-child { transform: translateX(8px); }
+
+      .foot {
+        margin-top: 80px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.15);
+        display: flex; justify-content: space-between;
+        font-size: 10px; letter-spacing: 0.4em; color: var(--grey-d); text-transform: uppercase;
+      }
+
+      @keyframes fade { to { opacity: 1; } }
+      @keyframes rise { to { transform: translateY(0); } }
+
+      @media (max-width: 900px) {
+        .wrap { padding: 20px 24px 60px; }
+        .top { grid-template-columns: 1fr; }
+        .center-mark, .top-right { text-align: left; }
+        .hero-meta, .contact { grid-template-columns: 1fr; gap: 20px; }
+        .row { grid-template-columns: 50px 1fr 30px; }
+        .row .cat, .row .year { display: none; }
+        .row .name { font-size: 28px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <div class="wrap">
+      <header class="top">
+        <div class="logo">Sveta<em> Magayaeva</em></div>
+        <div class="center-mark">Folio · MMXXVI · graphic designer</div>
+        <div class="top-right"><span class="dot"></span>Now booking · winter '26</div>
+      </header>
+
+      <section class="hero">
+        <div class="num">№ 01 / Cover</div>
+        <h1>
+          <span class="line l1"><span>The art of</span></span>
+          <span class="line l2"><span><em>quiet</em> design</span></span>
+          <span class="line l3"><span>— in black &amp; white.</span></span>
+        </h1>
+        <div class="hero-meta">
+          <div><span class="label">Discipline</span><span class="v">Brand identity</span></div>
+          <div><span class="label">Practice</span><span class="v">Packaging</span></div>
+          <div><span class="label">System</span><span class="v">Social design</span></div>
+          <div><span class="label">Based</span><span class="v">Remote / RU</span></div>
+        </div>
+      </section>
+
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>Brand Identity</span><span class="ast">✦</span>
+          <span>Packaging</span><span class="ast">✦</span>
+          <span>Social Media</span><span class="ast">✦</span>
+          <span>Editorial</span><span class="ast">✦</span>
+          <span>Brand Identity</span><span class="ast">✦</span>
+          <span>Packaging</span><span class="ast">✦</span>
+          <span>Social Media</span><span class="ast">✦</span>
+          <span>Editorial</span><span class="ast">✦</span>
+        </div>
+      </div>
+
+      <section class="works">
+        <div class="works-head">
+          <span class="lhs">Selected works <em style="color:var(--grey)">— 2024 / 2025</em></span>
+          <span>Index — 04 / 04</span>
+        </div>
+        <div class="works-grid">
+          <article class="row">
+            <span class="idx">№ 01</span>
+            <span class="name">The <em>Flex</em></span>
+            <span class="cat">Brand identity</span>
+            <span class="year">2025</span>
+            <span class="arrow">→</span>
+          </article>
+          <article class="row">
+            <span class="idx">№ 02</span>
+            <span class="name"><em>Little</em> Minds</span>
+            <span class="cat">Brand · Print</span>
+            <span class="year">2025</span>
+            <span class="arrow">→</span>
+          </article>
+          <article class="row">
+            <span class="idx">№ 03</span>
+            <span class="name">Meraki</span>
+            <span class="cat">Packaging</span>
+            <span class="year">2024</span>
+            <span class="arrow">→</span>
+          </article>
+          <article class="row">
+            <span class="idx">№ 04</span>
+            <span class="name">Karachaevsk</span>
+            <span class="cat">Place branding</span>
+            <span class="year">2024</span>
+            <span class="arrow">→</span>
+          </article>
+        </div>
+      </section>
+
+      <div class="quote">
+        <span class="open">“</span>Big goals can be achieved by taking small steps. Let's take that step together and watch it grow into something <em>great</em>.<span class="close">”</span>
+        <span class="sig">— Studio note · S. M.</span>
+      </div>
+
+      <section class="contact">
+        <h2>
+          Write —<br />
+          <a href="mailto:s.magayaeva@mail.ru">s.magayaeva@mail.ru</a>
+        </h2>
+        <div class="right">
+          <a href="tel:+79380292817"><span>+7 938 029 28 17</span><span>↗</span></a>
+          <a href="#"><span>Behance</span><span>↗</span></a>
+          <a href="#"><span>Telegram</span><span>↗</span></a>
+          <a href="#"><span>Instagram</span><span>↗</span></a>
+        </div>
+      </section>
+
+      <div class="foot">
+        <span>© MMXXVI · S. Magayaeva</span>
+        <span>Variant 04 — Monochrome</span>
+        <span>All rights reserved</span>
+      </div>
+    </div>
+
+    <script>
+      // reveal works rows on scroll
+      const rows = document.querySelectorAll(".row, .quote, .contact");
+      rows.forEach((r, i) => {
+        r.style.opacity = 0;
+        r.style.transform = "translateY(30px)";
+        r.style.transition = "opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)";
+        r.style.transitionDelay = (i % 4 * 0.08) + "s";
+      });
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = 1;
+          e.target.style.transform = "translateY(0)";
+          io.unobserve(e.target);
+        }
+      }), { threshold: .15 });
+      rows.forEach(r => io.observe(r));
+    </script>
+  </body>
+</html>

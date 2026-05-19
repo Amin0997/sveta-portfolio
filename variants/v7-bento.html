@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveta Magayaeva — Studio · Bento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #ecebe6;
+        --ink: #1a1a1a;
+        --muted: #7a7a73;
+        --card: #ffffff;
+        --pink: #f4cdc1;
+        --peach: #efb78a;
+        --sage: #b9c5a6;
+        --sky: #b8cfd9;
+        --plum: #6b3a4c;
+        --ink-2: #25201d;
+        --ease: cubic-bezier(.2,.85,.3,1);
+        --r: 24px;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: var(--bg); color: var(--ink); }
+      body {
+        font-family: "Geist", -apple-system, sans-serif;
+        font-weight: 400; -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      ::selection { background: var(--plum); color: #fff; }
+
+      .wrap { max-width: 1320px; margin: 0 auto; padding: 24px 32px 80px; }
+
+      /* TOP PILL */
+      .nav {
+        display: flex; justify-content: space-between; align-items: center;
+        background: var(--card); border-radius: 999px;
+        padding: 14px 22px;
+        opacity: 0; transform: translateY(-12px);
+        animation: down .9s var(--ease) .1s forwards;
+      }
+      .nav .l {
+        display: flex; align-items: center; gap: 12px;
+        font-family: "Instrument Serif", serif; font-style: italic; font-size: 22px;
+      }
+      .nav .l .dot { width: 10px; height: 10px; background: var(--plum); border-radius: 50%; animation: breathe 3s var(--ease) infinite; }
+      @keyframes breathe { 0%,100%{transform:scale(1);} 50%{transform:scale(1.5);} }
+      .nav .r { display: flex; gap: 4px; }
+      .nav .r a {
+        text-decoration: none; color: var(--ink); font-size: 14px;
+        padding: 8px 16px; border-radius: 999px;
+        transition: background .4s var(--ease), color .4s var(--ease);
+      }
+      .nav .r a:hover { background: var(--ink); color: var(--bg); }
+      .nav .avail { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+      .nav .avail::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #5fa55a; box-shadow: 0 0 0 4px rgba(95,165,90,.22); animation: pulse 2.2s var(--ease) infinite; }
+      @keyframes pulse { 0%,100%{box-shadow:0 0 0 4px rgba(95,165,90,.22);} 50%{box-shadow:0 0 0 9px rgba(95,165,90,0);} }
+
+      /* BENTO GRID */
+      .bento {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: 180px;
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--card); border-radius: var(--r);
+        padding: 28px; position: relative; overflow: hidden;
+        transition: transform .6s var(--ease), box-shadow .5s var(--ease);
+        opacity: 0; transform: translateY(28px);
+      }
+      .card.show { animation: up .9s var(--ease) forwards; }
+      .card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(26,26,26,.06); }
+
+      .card h3 { font-family: "Instrument Serif", serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+      .card .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+      .card .ico {
+        width: 36px; height: 36px; border-radius: 50%;
+        display: grid; place-items: center; font-size: 14px;
+        background: rgba(26,26,26,.06);
+      }
+      .arrow-ico {
+        position: absolute; top: 22px; right: 22px;
+        width: 38px; height: 38px; border-radius: 50%; background: var(--ink); color: var(--bg);
+        display: grid; place-items: center; font-size: 14px;
+        transition: transform .5s var(--ease);
+      }
+      .card:hover .arrow-ico { transform: rotate(-45deg); }
+
+      /* HERO BIG */
+      .c-hero {
+        grid-column: 1 / 5; grid-row: 1 / 3;
+        background: var(--ink); color: var(--bg);
+        padding: 40px;
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-hero .label { color: rgba(236,235,230,.6); }
+      .c-hero h1 {
+        font-family: "Instrument Serif", serif; font-weight: 400;
+        font-size: clamp(48px, 6.5vw, 96px); line-height: 0.96; letter-spacing: -0.025em;
+      }
+      .c-hero h1 em { color: var(--peach); font-style: italic; }
+      .c-hero h1 .line { display: block; overflow: hidden; }
+      .c-hero h1 .line > span { display: inline-block; transform: translateY(110%); animation: rise 1.3s var(--ease) forwards; }
+      .c-hero h1 .l1 > span { animation-delay: .5s; }
+      .c-hero h1 .l2 > span { animation-delay: .65s; }
+      .c-hero h1 .l3 > span { animation-delay: .8s; }
+      .c-hero .row { display: flex; justify-content: space-between; align-items: end; font-size: 13px; color: rgba(236,235,230,.7); }
+      .c-hero .row b { color: var(--bg); font-weight: 400; }
+
+      /* PORTRAIT placeholder */
+      .c-portrait {
+        grid-column: 5 / 7; grid-row: 1 / 3;
+        background: linear-gradient(160deg, var(--peach), var(--pink));
+        padding: 28px;
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-portrait .signature {
+        font-family: "Instrument Serif", serif; font-style: italic;
+        font-size: clamp(40px, 4vw, 64px); color: var(--plum); line-height: 1;
+        align-self: flex-end; text-align: right;
+      }
+      .c-portrait .signature small { display: block; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(107,58,76,.7); font-style: normal; margin-top: 14px; }
+
+      /* STAT — projects */
+      .c-stat {
+        grid-column: 1 / 2;
+        background: var(--sage);
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-stat .big {
+        font-family: "Instrument Serif", serif; font-size: 88px; line-height: 1;
+        color: var(--ink); letter-spacing: -0.04em; font-weight: 400;
+      }
+
+      /* ABOUT */
+      .c-about {
+        grid-column: 2 / 4;
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-about h3 { font-size: 22px; margin-bottom: 8px; }
+      .c-about p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+      /* SOCIAL */
+      .c-social {
+        grid-column: 4 / 5;
+        background: var(--sky);
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-social ul { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+      .c-social ul a {
+        color: var(--ink); text-decoration: none;
+        display: flex; justify-content: space-between; align-items: center;
+        transition: padding-left .4s var(--ease);
+      }
+      .c-social ul a span:last-child { transition: transform .4s var(--ease); }
+      .c-social ul a:hover { padding-left: 4px; }
+      .c-social ul a:hover span:last-child { transform: translateX(4px); }
+
+      /* CONTACT */
+      .c-contact {
+        grid-column: 5 / 7;
+        background: var(--plum); color: #fff;
+        padding: 28px; display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-contact .label { color: rgba(255,255,255,.7); }
+      .c-contact h3 {
+        font-size: clamp(22px, 2.2vw, 30px); line-height: 1.2;
+      }
+      .c-contact h3 a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.4); transition: border-color .4s var(--ease); }
+      .c-contact h3 a:hover { border-color: var(--peach); color: var(--peach); }
+      .c-contact .arrow-ico { background: #fff; color: var(--plum); }
+
+      /* PROJECTS — 4 medium */
+      .c-p {
+        grid-row: span 2;
+        padding: 0; overflow: hidden;
+        cursor: pointer;
+      }
+      .c-p .img {
+        height: 65%; position: relative; overflow: hidden;
+      }
+      .c-p .img::before {
+        content: ""; position: absolute; inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 60%);
+        transition: transform .8s var(--ease);
+      }
+      .c-p:hover .img::before { transform: scale(1.1); }
+      .c-p .body {
+        padding: 18px 22px 22px; height: 35%;
+        display: flex; justify-content: space-between; align-items: end;
+      }
+      .c-p .body h3 { font-size: 24px; }
+      .c-p .body .yr { font-size: 12px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; }
+      .c-p .body .arr { transition: transform .5s var(--ease); }
+      .c-p:hover .body .arr { transform: translateX(6px); }
+
+      .c-p1 .img { background: linear-gradient(135deg, #66b6cf, #0F7FA6); }
+      .c-p2 .img { background: linear-gradient(135deg, #f0a78d, #ED582E); }
+      .c-p3 .img { background: linear-gradient(135deg, #c08099, #7D002D); }
+      .c-p4 .img { background: linear-gradient(135deg, #b8c98a, #76992E); }
+
+      .c-p1 { grid-column: 1 / 3; }
+      .c-p2 { grid-column: 3 / 5; }
+      .c-p3 { grid-column: 5 / 7; }
+
+      /* SERVICES row */
+      .c-skill {
+        grid-column: 1 / 3;
+        background: var(--peach);
+      }
+      .c-skill h3 { font-size: 22px; margin-bottom: 8px; }
+      .c-skill ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+      .c-skill ul li {
+        background: rgba(0,0,0,.08); border-radius: 999px; padding: 4px 12px;
+        font-size: 12px; transition: background .4s var(--ease);
+      }
+      .c-skill ul li:hover { background: var(--ink); color: var(--bg); }
+
+      .c-quote {
+        grid-column: 3 / 7;
+        background: var(--ink); color: var(--bg);
+      }
+      .c-quote .label { color: rgba(236,235,230,.6); }
+      .c-quote blockquote {
+        font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400;
+        font-size: clamp(20px, 2vw, 28px); line-height: 1.3; letter-spacing: -0.005em;
+        margin-top: 14px;
+      }
+      .c-quote blockquote em { color: var(--peach); font-style: italic; }
+      .c-quote cite { font-style: normal; font-size: 11px; color: rgba(236,235,230,.55); letter-spacing: 0.25em; text-transform: uppercase; margin-top: 14px; display: block; }
+
+      /* big bottom project row */
+      .c-p4 { grid-column: 1 / 4; }
+      .c-time {
+        grid-column: 4 / 5;
+        background: var(--sage); display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-time .v { font-family: "Instrument Serif", serif; font-size: 44px; line-height: 1; }
+      .c-loc {
+        grid-column: 5 / 7;
+        background: var(--pink);
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .c-loc h3 { font-size: 32px; line-height: 1; }
+
+      .foot {
+        margin-top: 24px; display: flex; justify-content: space-between;
+        font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+      }
+
+      @keyframes down { to { opacity: 1; transform: translateY(0); } }
+      @keyframes up { to { opacity: 1; transform: translateY(0); } }
+      @keyframes rise { to { transform: translateY(0); } }
+
+      @media (max-width: 1100px) {
+        .bento { grid-template-columns: repeat(4, 1fr); }
+        .c-hero { grid-column: 1 / 5; grid-row: auto; }
+        .c-portrait { grid-column: 1 / 5; grid-row: auto; }
+        .c-stat { grid-column: 1 / 2; }
+        .c-about { grid-column: 2 / 4; }
+        .c-social { grid-column: 4 / 5; }
+        .c-contact { grid-column: 1 / 5; }
+        .c-p1, .c-p2, .c-p3, .c-p4 { grid-column: span 2; }
+        .c-skill { grid-column: 1 / 3; }
+        .c-quote { grid-column: 3 / 5; }
+        .c-time { grid-column: 1 / 3; }
+        .c-loc { grid-column: 3 / 5; }
+      }
+      @media (max-width: 720px) {
+        .wrap { padding: 18px 14px 60px; }
+        .nav { flex-direction: column; gap: 12px; border-radius: 24px; }
+        .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+        .c-hero, .c-portrait, .c-about, .c-social, .c-contact, .c-p1, .c-p2, .c-p3, .c-p4, .c-skill, .c-quote, .c-time, .c-loc, .c-stat { grid-column: 1 / -1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <div class="l"><span class="dot"></span>Sveta <em style="color:var(--plum);font-style:italic;">M.</em> Studio</div>
+        <div class="r">
+          <a href="#about">About</a>
+          <a href="#works">Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="avail">Available · Winter 2026</div>
+      </nav>
+
+      <section class="bento">
+        <div class="card c-hero">
+          <div>
+            <div class="label">Graphic Designer · Russia</div>
+            <h1 style="margin-top:18px;">
+              <span class="line l1"><span>Brand systems,</span></span>
+              <span class="line l2"><span><em>packaging,</em></span></span>
+              <span class="line l3"><span>and social design.</span></span>
+            </h1>
+          </div>
+          <div class="row">
+            <span><b>Sveta Magayaeva</b> · since 2024</span>
+            <span>↓ scroll</span>
+          </div>
+        </div>
+
+        <div class="card c-portrait">
+          <div class="label" style="color:rgba(107,58,76,.7)">Studio of one</div>
+          <div class="signature">
+            S. M.<br />Studio
+            <small>Visual identity · Pack · Social</small>
+          </div>
+        </div>
+
+        <div class="card c-stat">
+          <div class="label">Projects</div>
+          <div class="big">12<span style="font-size:0.4em;vertical-align:0.9em;color:var(--muted);font-style:italic;">+</span></div>
+          <span style="font-size:11px;color:var(--muted);letter-spacing:0.22em;text-transform:uppercase;">2024–25</span>
+        </div>
+
+        <div class="card c-about" id="about">
+          <div>
+            <div class="label">About</div>
+            <h3>A quiet maker of brand worlds.</h3>
+          </div>
+          <p>Я графический дизайнер. Создаю фирменные стили, упаковку и системы для социальных сетей — внимательно, с уважением к ритму, материалу и смыслу.</p>
+        </div>
+
+        <div class="card c-social">
+          <div class="label">Find me</div>
+          <ul>
+            <li><a href="#"><span>Behance</span><span>↗</span></a></li>
+            <li><a href="#"><span>Telegram</span><span>↗</span></a></li>
+            <li><a href="#"><span>Instagram</span><span>↗</span></a></li>
+          </ul>
+        </div>
+
+        <div class="card c-contact" id="contact">
+          <div>
+            <div class="label">Let's talk</div>
+            <h3 style="margin-top:18px;">
+              <a href="mailto:s.magayaeva@mail.ru">s.magayaeva@mail.ru</a><br />
+              <a href="tel:+79380292817">+7 938 029 28 17</a>
+            </h3>
+          </div>
+          <div class="arrow-ico">→</div>
+        </div>
+
+        <!-- works row -->
+        <div class="card c-p c-p1" id="works">
+          <div class="img"></div>
+          <div class="body">
+            <h3>The Flex</h3>
+            <span class="yr">'25 · Identity</span>
+            <span class="arr">→</span>
+          </div>
+        </div>
+        <div class="card c-p c-p2">
+          <div class="img"></div>
+          <div class="body">
+            <h3>Little Minds</h3>
+            <span class="yr">'25 · Brand</span>
+            <span class="arr">→</span>
+          </div>
+        </div>
+        <div class="card c-p c-p3">
+          <div class="img"></div>
+          <div class="body">
+            <h3>Meraki</h3>
+            <span class="yr">'24 · Pack</span>
+            <span class="arr">→</span>
+          </div>
+        </div>
+
+        <!-- skills + quote row -->
+        <div class="card c-skill">
+          <div class="label">Toolkit</div>
+          <h3>Tools of the trade</h3>
+          <ul>
+            <li>Figma</li><li>Photoshop</li><li>Illustrator</li>
+            <li>InDesign</li><li>After Effects</li><li>AI</li>
+          </ul>
+        </div>
+        <div class="card c-quote">
+          <div class="label">Note</div>
+          <blockquote>“Big goals are reached by <em>small steps.</em> Let's take that step together — and watch it grow.”</blockquote>
+          <cite>— S. M.</cite>
+        </div>
+
+        <!-- final row -->
+        <div class="card c-p c-p4" style="grid-row: span 2;">
+          <div class="img"></div>
+          <div class="body">
+            <h3>Karachaevsk</h3>
+            <span class="yr">'24 · Place branding</span>
+            <span class="arr">→</span>
+          </div>
+        </div>
+        <div class="card c-time">
+          <div class="label">Now</div>
+          <div class="v" id="clock">—:—</div>
+          <span style="font-size:11px;color:rgba(0,0,0,.5);letter-spacing:0.22em;text-transform:uppercase;">MSK · GMT+3</span>
+        </div>
+        <div class="card c-loc">
+          <div class="label">Based</div>
+          <h3>Russia,<br />working <em style="font-style:italic;color:var(--plum);">worldwide</em>.</h3>
+          <div class="arrow-ico" style="position:relative;align-self:flex-end;top:auto;right:auto;">↗</div>
+        </div>
+      </section>
+
+      <div class="foot">
+        <span>© 2026 Sveta Magayaeva</span>
+        <span>Variant 07 · Bento</span>
+      </div>
+    </div>
+
+    <script>
+      // clock
+      const clk = document.getElementById("clock");
+      const tick = () => {
+        const d = new Date();
+        const hh = String(d.getHours()).padStart(2, "0");
+        const mm = String(d.getMinutes()).padStart(2, "0");
+        clk.textContent = hh + ":" + mm;
+      };
+      tick(); setInterval(tick, 30000);
+
+      // stagger reveal
+      const cards = document.querySelectorAll(".card");
+      cards.forEach((c, i) => {
+        c.style.animationDelay = (0.05 + (i % 8) * 0.06) + "s";
+      });
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); }
+      }), { threshold: .12 });
+      cards.forEach(c => io.observe(c));
+    </script>
+  </body>
+</html>
